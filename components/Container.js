@@ -5,7 +5,7 @@ const Container = (props) => {
   return (
     <div className={styles.container}>
       <Header />
-      {props.children}
+      <main>{props.children}</main>
     </div>
   );
 };
