@@ -3,6 +3,8 @@ import HomeGallery from '../components/HomeGallery';
 import { getPrints } from '../lib/db.js';
 
 const Home = (props) => {
+  console.log(props.cart);
+
   return (
     <div className={styles.home}>
       <HomeGallery prints={props.prints} />

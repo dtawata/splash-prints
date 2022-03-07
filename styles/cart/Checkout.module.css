@@ -1,0 +1,77 @@
+
+.checkout {
+  width: 38%;
+}
+
+.details {
+  margin-top: 20px;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px 0 #444;
+}
+
+.detailsTitle {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #eee;
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.line:nth-child(3) {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.totalLabel {
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.totalValue {
+  font-weight: 700;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  margin: 30px auto 0 auto;
+  padding: 14px 0;
+  background-color: #1285ed;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  outline: none;
+}
+
+.payment {
+  width: 80%;
+  margin: 5px auto 0 auto;
+}
+
+.secured {
+  color: #6e6e6e;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+}

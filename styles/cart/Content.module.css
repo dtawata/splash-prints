@@ -1,0 +1,87 @@
+
+.content {
+  width: 62%;
+  padding-right: 4%;
+}
+
+.cartTitle {
+  padding: 20px 0;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #eee;
+}
+
+.printDetails {
+  width: 100%;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.print {
+  width: 200px;
+  margin-right: 30px;
+}
+
+.print img {
+  border-radius: 4px;
+}
+
+.printName {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.qty, .size, .price {
+  margin: 20px 10px;
+}
+
+.price {
+
+}
+
+.qtyTitle, .sizeTitle, .itemLabel {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.qty select, .size select {
+  width: 90px;
+  margin-top: 5px;
+  padding: 10px 7px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  color: #444;
+  font-size: 16px;
+  font-weight: 700;
+  outline: none;
+}
+
+.itemPrice {
+  margin-top: 5px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  width: 100px;
+}
+.selectors {
+  display: flex;
+  align-items: center;
+}

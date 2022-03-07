@@ -4,6 +4,7 @@ import Details from '../../components/prints/Details';
 import { getPrints } from '../../lib/db.js';
 
 const Prints = (props) => {
+
   return (
     <div className={styles.prints}>
       <Gallery />
