@@ -1,6 +1,6 @@
 import styles from '../../styles/Prints.module.css';
-import Gallery from '../../components/Gallery';
-import Details from '../../components/Details';
+import Gallery from '../../components/prints/Gallery';
+import Details from '../../components/prints/Details';
 import { getPrints } from '../../lib/db.js';
 
 const Prints = (props) => {

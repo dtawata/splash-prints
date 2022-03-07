@@ -1,4 +1,113 @@
 
 .details {
-  width: 50%;
+  width: 46%;
+  padding: 10px 40px 10px 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.author {
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.price {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.sizeTitle {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.sizes {
+  display: flex;
+  margin-top: 10px;
+}
+
+.size {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  border: 3px solid #1285ed;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.size + .size {
+  margin-left: 20px;
+  border: 1px solid #444;
+}
+
+.sizeAbbreviation {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.sizeMeasurements {
+  margin-left: 15px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.printTitle {
+  display: flex;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.prints {
+  display: flex;
+  margin: 10px -10px;
+}
+
+/* .print {
+  width: 100px;
+}
+
+.print img {
+  border-radius: 50%;
+} */
+
+.print {
+  position: relative;
+  display: block;
+  width: 17%;
+  aspect-ratio: 1/1;
+  margin: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.print img {
+  border-radius: 50%;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 21px;
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
 }

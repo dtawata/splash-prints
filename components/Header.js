@@ -6,7 +6,7 @@ const Header = (props) => {
       <div className={styles.logo}>Design</div>
       <nav>
         <ul>
-          <li>First</li>
+          <li>Featured</li>
           <li>Second</li>
           <li>Third</li>
           <li>Fourth</li>

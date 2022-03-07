@@ -26,3 +26,8 @@ values('/img/kevin-wong-D6Uj3I0zMaU-unsplash.jpg', 'Kevin Wong', 'alt placeholde
 
 insert into prints(src, author, alt, description, price, sale, unsplash, instagram)
 values('/img/kentaro-toma-nQKiOOb8jPo-unsplash.jpg', 'Kentaro Toma', 'alt placeholder', 'description placeholder', 44, null, 'https://unsplash.com/@borkography', 'https://www.instagram.com/borkography/');
+
+insert into prints(src, author, alt, description, price, sale, unsplash, instagram)
+values('/img/silas-baisch-K785Da4A_JA-unsplash.jpg', 'Silas Baisch', 'alt placeholder', 'description placeholder', 44, null, 'https://unsplash.com/@borkography', 'https://www.instagram.com/borkography/');
+
+-- values('/img/pawel-czerwinski-NFmB9IWwUVQ-unsplash.jpg', 'Pawel Czerwinski', 'alt placeholder', 'description placeholder', 44, null, 'https://unsplash.com/@borkography', 'https://www.instagram.com/borkography/');
