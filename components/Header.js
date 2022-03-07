@@ -1,9 +1,12 @@
 import styles from '../styles/Header.module.css';
+import Link from 'next/link';
 
 const Header = (props) => {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>Design</div>
+      <Link href='/' passHref>
+        <div className={styles.logo}>Design</div>
+      </Link>
       <nav>
         <ul>
           <li>Featured</li>

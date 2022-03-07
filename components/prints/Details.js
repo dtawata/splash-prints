@@ -32,6 +32,15 @@ const Details = (props) => {
           return <MiniPrint print={print} key={index} />
         })}
       </div>
+      <button className={styles.button}>Add to Cart</button>
+      <div className={styles.social}>
+        <a href={props.selected.unsplash} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faUnsplash} />
+        </a>
+        <a href={props.selected.instagram} target="_blank" rel="noreferrer">
+          <FontAwesomeIcon icon={faInstagram} />
+        </a>
+      </div>
     </div>
   );
 };

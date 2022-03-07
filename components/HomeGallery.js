@@ -16,10 +16,10 @@ const HomeGallery = (props) => {
 
 const HomeThumbnail = (props) => {
   return (
-    <Link href={`/prints/${props.print.id}`} passHref>
+    <Link href={`/prints/${props.print.path}/${props.print.id}`} passHref>
       <div className={styles.thumbnail}>
-        <Image src={props.print.src} alt={'hello'} width={550} height={650} />
-        <div className={styles.text}>By {props.print.author}</div>
+        <Image src={props.print.src} alt={props.print.alt} width={550} height={650} />
+        <div className={styles.text}>By {props.print.artist}</div>
       </div>
     </Link>
   );

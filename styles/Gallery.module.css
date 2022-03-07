@@ -1,5 +1,9 @@
 
 .gallery {
-  width: 42%;
-  margin-left: 10px;
+  width: 47%;
+  padding-left: 1%;
+}
+
+.gallery img {
+  border-radius: 4px;
 }
