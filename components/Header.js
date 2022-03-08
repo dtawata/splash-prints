@@ -9,7 +9,9 @@ const Header = (props) => {
       </Link>
       <nav>
         <ul>
-          <li>Home</li>
+          <Link href="/" passHref>
+            <li>Home</li>
+          </Link>
           <li>Featured</li>
           <li>Third</li>
           <li>Fourth</li>

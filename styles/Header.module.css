@@ -1,6 +1,7 @@
 
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 20px 10px;
   border-bottom: 1px solid #eee;
@@ -8,7 +9,8 @@
 
 .logo {
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
+  font-style: italic;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -17,11 +19,18 @@
 .header ul {
   display: flex;
   align-items: center;
-  margin-left: 120px;
 }
 
 .header li {
   margin: 0 25px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.cart {
   cursor: pointer;
   font-weight: 700;
   letter-spacing: 1px;
