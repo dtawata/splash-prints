@@ -6,8 +6,9 @@ const Content = (props) => {
     <div className={styles.content}>
       <div className={styles.cartTitle}>Your Cart</div>
       <div className={styles.items}>
-        <Item />
-        <Item />
+        {props.content.map((item, index) => {
+          return <Item item={item} key={index} />
+        })}
       </div>
     </div>
   );
@@ -17,7 +18,7 @@ const Item = (props) => {
   return (
     <div className={styles.item}>
       <div className={styles.print}>
-        <Image src="/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg" alt={'hello'} width={500} height={600} layout={'responsive'} />
+        <Image src={props.item.src} alt={'hello'} width={500} height={600} layout={'responsive'} />
       </div>
       <div className={styles.printDetails}>
         <div className={styles.printName}>Cityscape Collection</div>

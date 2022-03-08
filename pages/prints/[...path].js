@@ -12,7 +12,7 @@ const Prints = (props) => {
     <div className={styles.prints}>
       <Thumbnails collection={props.collection} setSelected={setSelected} />
       <Gallery selected={selected} />
-      <Details collection={props.collection} selected={selected} setSelected={setSelected} />
+      <Details collection={props.collection} selected={selected} setSelected={setSelected} cart={props.cart} setCart={props.setCart} />
     </div>
   );
 };

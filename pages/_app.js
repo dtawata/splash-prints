@@ -3,11 +3,11 @@ import Container from '../components/Container';
 import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-  const [cart, setCart] = useState('penguin');
+  const [cart, setCart] = useState([]);
 
   return (
     <Container>
-      <Component {...pageProps} cart={cart} />
+      <Component {...pageProps} cart={cart} setCart={setCart} />
     </Container>
   )
 }

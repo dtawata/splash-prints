@@ -3,8 +3,19 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { faUnsplash, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { useEffect } from 'react';
 
 const Details = (props) => {
+  const { cart, setCart } = props;
+  const addToCart = () => {
+    const update = cart.concat([props.selected.id]);
+    setCart(update);
+  };
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
   return (
     <div className={styles.details}>
       <div className={styles.title}>Midnight Train</div>
@@ -32,7 +43,7 @@ const Details = (props) => {
           return <MiniPrint print={print} key={index} />
         })}
       </div>
-      <button className={styles.button}>Add to Cart</button>
+      <button onClick={addToCart} className={styles.button}>Add to Cart</button>
       <div className={styles.social}>
         <a href={props.selected.unsplash} target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faUnsplash} />

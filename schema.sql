@@ -9,8 +9,10 @@ create table prints (
   artist varchar(255),
   alt varchar(255),
   description varchar(255),
-  price integer,
-  sale integer,
+  price_medium integer,
+  price_large integer,
+  sale_medium integer,
+  sale_large integer,
   unsplash varchar(255),
   instagram varchar(255),
   path varchar(255)
