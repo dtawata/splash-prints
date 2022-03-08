@@ -5,12 +5,12 @@ const Header = (props) => {
   return (
     <header className={styles.header}>
       <Link href="/" passHref>
-        <div className={styles.logo}>Design</div>
+        <div className={styles.logo}>Penguin Prints</div>
       </Link>
       <nav>
         <ul>
+          <li>Home</li>
           <li>Featured</li>
-          <li>Second</li>
           <li>Third</li>
           <li>Fourth</li>
           <li>Fifth</li>

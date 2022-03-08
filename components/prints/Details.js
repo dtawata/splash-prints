@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 const Details = (props) => {
   const { cart, setCart } = props;
   const addToCart = () => {
+
     const update = cart.concat([props.selected.id]);
     setCart(update);
   };
