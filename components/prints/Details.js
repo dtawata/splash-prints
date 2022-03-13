@@ -6,23 +6,27 @@ import { faUnsplash, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { useState, useEffect } from 'react';
 
 const Details = (props) => {
-  const { cart, setCart } = props;
+  const { cart, setCart, selected, collection } = props;
   const [size, setSize] = useState('medium');
 
   const addToCart = () => {
     const update = Object.assign({}, cart);
-    const key = `${props.selected.id}_${size}`;
+    const key = `${selected.id}_${size}`;
 
-    if (cart[key]) {
+    if (update[key]) {
       update[key]['qty']++;
+      if (update[key]['qty'] > 10) {
+        update[key]['qty'] = 10;
+      }
     } else {
-      update[key] = props.selected;
+      update[key] = Object.assign({}, selected);
       update[key]['qty'] = 1;
       update[key]['price'] = update[key][`price_${size}`];
       update[key]['size'] = size;
     }
+
     setCart(update);
-  };
+  }
 
   const changeSize = (clickedSize) => {
     if (clickedSize === size) {
@@ -44,8 +48,6 @@ const Details = (props) => {
     sizeM = `${styles.size}`;
     sizeL = `${styles.size} ${styles.active}`;
   }
-
-
 
   return (
     <div className={styles.details}>
@@ -70,16 +72,16 @@ const Details = (props) => {
         <div className={styles.printTitleName}>Midnight Train</div>
       </div>
       <div className={styles.prints}>
-        {props.collection.map((print, index) => {
+        {collection.map((print, index) => {
           return <MiniPrint print={print} key={index} />
         })}
       </div>
       <button onClick={addToCart} className={styles.button}>Add to Cart</button>
       <div className={styles.social}>
-        <a href={props.selected.unsplash} target="_blank" rel="noreferrer">
+        <a href={selected.unsplash} target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faUnsplash} />
         </a>
-        <a href={props.selected.instagram} target="_blank" rel="noreferrer">
+        <a href={selected.instagram} target="_blank" rel="noreferrer">
           <FontAwesomeIcon icon={faInstagram} />
         </a>
       </div>
