@@ -1,8 +1,8 @@
 import styles from '../../styles/Prints.module.css';
 import { useState } from 'react';
+import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
-import Thumbnails from '../../components/prints/Thumbnails';
 import { getCollection } from '../../lib/db.js';
 
 const Prints = (props) => {

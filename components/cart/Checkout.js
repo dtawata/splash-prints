@@ -2,6 +2,18 @@ import styles from '../../styles/cart/Checkout.module.css';
 import Image from 'next/image';
 
 const Checkout = (props) => {
+  const { cart } = props;
+
+  let itemTotal = 0;
+  for (let key in cart) {
+    itemTotal += cart[key]['price'] * cart[key]['qty'];
+  }
+  let shipping = 10;
+  if (itemTotal > 50) {
+    shipping = 0;
+  }
+  let total = itemTotal + shipping;
+
   return (
     <div className={styles.checkout}>
       <div className={styles.details}>
@@ -13,16 +25,16 @@ const Checkout = (props) => {
           </div>
           <div className={styles.line}>
             <div>Item total:</div>
-            <div>$44.05</div>
+            <div>${itemTotal}</div>
           </div>
           <div className={styles.line}>
             <div>Shipping & handling:</div>
-            <div>$10.00</div>
+            <div>${shipping}</div>
           </div>
         </div>
         <div className={styles.total}>
           <div className={styles.totalLabel}>Order total:</div>
-          <div className={styles.totalValue}>$120</div>
+          <div className={styles.totalValue}>${total}</div>
         </div>
         <button className={styles.button}>Checkout</button>
         <div className={styles.payment}>

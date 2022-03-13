@@ -13,7 +13,7 @@ const Header = (props) => {
             <li>Home</li>
           </Link>
           <li>Featured</li>
-          <li>Third</li>
+          <li>Favorites</li>
           <li>Fourth</li>
           <li>Fifth</li>
         </ul>

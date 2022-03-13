@@ -6,23 +6,28 @@ import Checkout from '../../components/cart/Checkout';
 import { useState } from 'react';
 
 const Cart = (props) => {
-  const [content, setContent] = useState([]);
+  const {cart, setCart} = props;
+  // const [content, setContent] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/print', {
-      params: {
-        id: props.cart
-      }
-    })
-      .then((res) => {
-        setContent(res.data);
-      })
-  }, [props.cart])
+  // useEffect(() => {
+  //   axios.get('http://localhost:3000/api/print', {
+  //     params: {
+  //       id: props.cart
+  //     }
+  //   })
+  //     .then((res) => {
+  //       setContent(res.data);
+  //     })
+  // }, [props.cart])
+
+  // const content = Object.keys(props.cart).map((key) => {
+  //   return props.cart[key];
+  // });
 
   return (
     <div className={styles.cart}>
-      <Content content={content} />
-      <Checkout />
+      <Content cart={cart} setCart={setCart} />
+      <Checkout cart={cart} />
     </div>
   );
 };

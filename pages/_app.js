@@ -3,7 +3,7 @@ import Container from '../components/Container';
 import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
 
   return (
     <Container>

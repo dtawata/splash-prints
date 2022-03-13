@@ -1,4 +1,4 @@
-import styles from '../../styles/Thumbnails.module.css';
+import styles from '../../styles/prints/Thumbnails.module.css';
 import Image from 'next/image';
 
 const Thumbnails = (props) => {
@@ -14,7 +14,7 @@ const Thumbnails = (props) => {
 const Thumbnail = (props) => {
   return (
     <div className={styles.thumbnail}>
-      <Image src={props.item.src} alt={'something meaningful'} width={50} height={50} layout={'responsive'} />
+      <Image src={props.item.src} alt={'something meaningful'} width={200} height={200} layout={'responsive'} />
     </div>
   );
 };
