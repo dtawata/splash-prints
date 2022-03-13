@@ -19,7 +19,8 @@ const Print = (props) => {
   return (
     <Link href={`/prints/${props.print.path}/${props.print.id}`} passHref>
       <div className={styles.print}>
-        <Image src={props.print.src} alt={props.print.alt} width={550} height={650} />
+        <Image src={props.print.src} alt={props.print.alt} width={347} height={413} />
+        {/* <Image src={props.print.src} alt={props.print.alt} width={550} height={650} /> */}
         <div className={styles.text}>By {props.print.artist}</div>
       </div>
     </Link>

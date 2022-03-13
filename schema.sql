@@ -16,14 +16,15 @@ create table prints (
   sale_large integer,
   unsplash varchar(255),
   instagram varchar(255),
-  path varchar(255)
+  path varchar(255),
+  index (path)
 );
 
 insert into prints(src, title, artist, alt, description, price_medium, price_large, sale_medium, sale_large, unsplash, instagram, path)
-values('/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg', 'AD01', 'Anthony Delanoix', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
-('/img/anthony-delanoix-o0pifdpvJ_o-unsplash.jpg', 'AD02', 'Anthony Delanoix', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
-('/img/anthony-delanoix-opCJJa1YmJs-unsplash.jpg', 'AD03', 'Anthony Delanoix', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
-('/img/anthony-delanoix-vjwkQsqatCM-unsplash.jpg', 'AD04', 'Anthony Delanoix', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
+values('/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg', 'AD01', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati pariatur aliquam quam ab vel ducimus id quia, facere corporis reiciendis consequatur. Atque!', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
+('/img/anthony-delanoix-o0pifdpvJ_o-unsplash.jpg', 'AD02', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nostrum iusto culpa voluptatem, sint vitae nam quasi pariatur? Qui ratione officia atque libero perspiciatis!', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
+('/img/anthony-delanoix-opCJJa1YmJs-unsplash.jpg', 'AD03', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, doloribus accusantium iusto natus molestias cupiditate a hic aperiam similique dolorum, autem ad id.', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
+('/img/anthony-delanoix-vjwkQsqatCM-unsplash.jpg', 'AD04', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis aspernatur aliquam nesciunt cum rerum at nam expedita obcaecati! In recusandae fugiat quis illum sed.', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
 
 ('/img/jonny-gios-4Oa_aP_5pSs-unsplash.jpg', 'JG01', 'Jonny Gios', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@supergios', 'https://www.instagram.com/jonny.gios/', 'jonny-gios'),
 ('/img/jonny-gios-deBVd7paRKk-unsplash.jpg', 'JG02', 'Jonny Gios', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@supergios', 'https://www.instagram.com/jonny.gios/', 'jonny-gios'),

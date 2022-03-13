@@ -1,26 +1,44 @@
 import styles from '../../styles/Prints.module.css';
+import { useState } from 'react';
+import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
-import { getPrints } from '../../lib/db.js';
+import { getCollection } from '../../lib/db.js';
+// import { getCollection } from '../../lib/db.js';
 
 const Prints = (props) => {
+  const { cart, setCart, collection } = props;
+  const [selected, setSelected] = useState(props.selected);
+
+  console.log(collection);
 
   return (
     <div className={styles.prints}>
-      <Gallery />
-      <Details />
-      {props.prints[0].author}
+      <Thumbnails collection={collection} setSelected={setSelected} />
+      <Gallery selected={selected} />
+      <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} setCart={setCart} />
     </div>
   );
 };
 
 export default Prints;
 
-export const getServerSideProps = async () => {
-  const data = await getPrints();
+export const getStaticProps = async (context) => {
+  const collection = await getCollection('adam-borkowski');
+  // const collection = await getCollection(path[0]);
+  // let id = 0;
+  // for (let i = 0; i < collection.length; i++) {
+  //   if (collection[i].id.toString() === path[1]) {
+  //     id = i;
+  //     break;
+  //   }
+  // }
+  const selected = collection[0];
+
   return {
     props: {
-      prints: data
+      collection: collection,
+      selected: selected
     }
   }
-};
+}

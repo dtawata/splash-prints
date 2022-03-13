@@ -1,18 +1,23 @@
 import styles from '../../styles/Prints.module.css';
-import { useState } from 'react';
+import { useState, useRef, Fragment } from 'react';
 import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
 import { getCollection } from '../../lib/db.js';
 
 const Prints = (props) => {
+  const { cart, setCart, collection } = props;
   const [selected, setSelected] = useState(props.selected);
+  const recent = useRef(false);
 
   return (
     <div className={styles.prints}>
-      <Thumbnails collection={props.collection} setSelected={setSelected} />
-      <Gallery selected={selected} />
-      <Details collection={props.collection} selected={selected} setSelected={setSelected} cart={props.cart} setCart={props.setCart} />
+      {recent.current ? <div>Hello</div> :
+        <Fragment>
+          <Thumbnails collection={collection} setSelected={setSelected} />
+          <Gallery selected={selected} />
+          <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} setCart={setCart} recent={recent} />
+        </Fragment>}
     </div>
   );
 };

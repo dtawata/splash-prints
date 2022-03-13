@@ -10,7 +10,7 @@
   letter-spacing: 2px;
 }
 
-.author {
+.artist {
   margin-top: 5px;
   font-style: italic;
 }
@@ -101,7 +101,7 @@
   border-radius: 50%;
 }
 
-.icon {
+.check {
   position: absolute;
   top: 0;
   right: 0;
@@ -128,4 +128,14 @@
   font-weight: 700;
   letter-spacing: 2px;
   outline: none;
+}
+
+.social {
+  display: flex;
+  margin-top: 10px;
+}
+
+.icon {
+  margin: 0 10px;
+  font-size: 22px;
 }

@@ -2,19 +2,22 @@ import styles from '../../styles/prints/Thumbnails.module.css';
 import Image from 'next/image';
 
 const Thumbnails = (props) => {
+  const { collection, setSelected } = props;
+
   return (
     <div className={styles.thumbnails}>
-      {props.collection.map((item, index) => {
-        return <Thumbnail item={item} key={index} />
+      {collection.map((print, index) => {
+        return <Thumbnail key={print.id} print={print} setSelected={setSelected} />
       })}
     </div>
-  )
-}
+  );
+};
 
 const Thumbnail = (props) => {
+  const { print, setSelected } = props;
   return (
-    <div className={styles.thumbnail}>
-      <Image src={props.item.src} alt={'something meaningful'} width={200} height={200} layout={'responsive'} />
+    <div className={styles.thumbnail} onClick={() => {setSelected(print); }}>
+      <Image src={print.src} alt={print.alt} width={150} height={150} />
     </div>
   );
 };
