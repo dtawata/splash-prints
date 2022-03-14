@@ -1,6 +1,8 @@
 import styles from '../../styles/cart/Content.module.css';
-import Image from 'next/image';
 import { Fragment } from 'react';
+import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 
 const Content = (props) => {
   const { cart, setCart } = props;
@@ -36,12 +38,18 @@ const Content = (props) => {
     setCart(update);
   };
 
+  const removeItem = (key) => {
+    const update = Object.assign({}, cart);
+    delete update[key];
+    setCart(update);
+  };
+
   return (
     <div className={styles.content}>
       <div className={styles.cartTitle}>Your Cart</div>
       <div className={styles.items}>
         {cartArr.map((item, index) => {
-          return <Item key={item.key} item={item} changeSize={changeSize} changeQty={changeQty} />
+          return <Item key={item.key} item={item} changeSize={changeSize} changeQty={changeQty} removeItem={removeItem} />
         })}
       </div>
     </div>
@@ -49,7 +57,7 @@ const Content = (props) => {
 };
 
 const Item = (props) => {
-  const { item, changeQty, changeSize } = props;
+  const { item, changeQty, changeSize, removeItem } = props;
 
   return (
     <div className={styles.item}>
@@ -81,6 +89,9 @@ const Item = (props) => {
             <div className={styles.itemPrice}>${item.qty * item.price}</div>
           </div>
         </div>
+      </div>
+      <div onClick={() => { removeItem(item.key); }} className={styles.remove}>
+        <FontAwesomeIcon icon={faX} className={styles.icon} />
       </div>
     </div>
   );
