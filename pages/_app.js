@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState({});
 
   return (
-    <Container>
+    <Container cart={cart}>
       <Component {...pageProps} cart={cart} setCart={setCart} />
     </Container>
   )

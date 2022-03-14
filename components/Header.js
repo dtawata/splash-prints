@@ -1,7 +1,14 @@
 import styles from '../styles/Header.module.css';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Header = (props) => {
+  const { cart } = props;
+  const qty = Object.keys(cart).reduce((accumulator, current) => {
+    return accumulator + cart[current].qty;
+  }, 0);
+
   return (
     <header className={styles.header}>
       <Link href="/" passHref>
@@ -19,7 +26,13 @@ const Header = (props) => {
         </ul>
       </nav>
       <Link href="/cart" passHref>
-        <div className={styles.cart}>Cart</div>
+        <div className={styles.cart}>
+          <div className={styles.iconContainer}>
+            <FontAwesomeIcon icon={faCartShopping} className={styles.icon} flip="horizontal" />
+            {qty > 0 && <div className={styles.qty}>{qty}</div>}
+          </div>
+          <div>Cart</div>
+        </div>
       </Link>
     </header>
   );

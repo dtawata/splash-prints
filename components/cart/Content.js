@@ -2,7 +2,7 @@ import styles from '../../styles/cart/Content.module.css';
 import { Fragment } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 const Content = (props) => {
   const { cart, setCart } = props;
