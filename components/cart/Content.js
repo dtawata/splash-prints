@@ -54,7 +54,7 @@ const Item = (props) => {
   return (
     <div className={styles.item}>
       <div className={styles.print}>
-        <Image src={props.item.src} alt={'hello'} width={500} height={600} layout={'responsive'} />
+        <Image src={props.item.src} alt={'hello'} width={200} height={240} />
       </div>
       <div className={styles.printDetails}>
         <div className={styles.printName}>{props.item.title}</div>
