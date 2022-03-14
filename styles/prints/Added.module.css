@@ -1,0 +1,35 @@
+
+.added {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.title {
+  font-size: 22px;
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.button {
+  width: 240px;
+  padding: 15px 0;
+  font-size: 18px;
+  background-color: #1285ED;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.or {
+  margin: 0 30px;
+  font-size: 18px;
+  font-weight: 300;
+}

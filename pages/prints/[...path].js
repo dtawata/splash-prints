@@ -1,5 +1,6 @@
 import styles from '../../styles/Prints.module.css';
 import { useState, useRef, Fragment } from 'react';
+import Added from '../../components/prints/Added';
 import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
@@ -12,7 +13,7 @@ const Prints = (props) => {
 
   return (
     <div className={styles.prints}>
-      {recent.current ? <div>Hello</div> :
+      {recent.current ? <Added /> :
         <Fragment>
           <Thumbnails collection={collection} setSelected={setSelected} />
           <Gallery selected={selected} />
