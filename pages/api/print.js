@@ -1,6 +1,6 @@
 import { connection } from '../../lib/db.js';
 
-export default async function handler (req, res) {
+export default async function handler(req, res) {
   let id = req.query['id[]'];
   if (typeof id !== 'object') {
     id = [id];

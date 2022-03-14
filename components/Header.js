@@ -25,15 +25,20 @@ const Header = (props) => {
           <li>Fifth</li>
         </ul>
       </nav>
-      <Link href="/cart" passHref>
-        <div className={styles.cart}>
-          <div className={styles.iconContainer}>
-            <FontAwesomeIcon icon={faCartShopping} className={styles.icon} flip="horizontal" />
-            {qty > 0 && <div className={styles.qty}>{qty}</div>}
+      <div className={styles.right}>
+        <Link href="/cart" passHref>
+          <div className={styles.cart}>
+            <div className={styles.iconContainer}>
+              <FontAwesomeIcon icon={faCartShopping} className={styles.icon} flip="horizontal" />
+              {qty > 0 && <div className={styles.qty}>{qty}</div>}
+            </div>
+            <div>Cart</div>
           </div>
-          <div>Cart</div>
-        </div>
-      </Link>
+        </Link>
+        <Link href="/login" passHref>
+          <div className={styles.login}>Login</div>
+        </Link>
+      </div>
     </header>
   );
 };

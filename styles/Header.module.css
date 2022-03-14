@@ -33,6 +33,7 @@
 .cart {
   display: flex;
   align-items: center;
+  margin-right: 15px;
   cursor: pointer;
   font-weight: 700;
   letter-spacing: 1px;
@@ -62,4 +63,17 @@
   color: #fff;
   font-size: 12px;
   font-weight: 400;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.login {
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  list-style: none;
+  text-transform: uppercase;
 }

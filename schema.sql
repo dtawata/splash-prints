@@ -40,3 +40,13 @@ values('/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg', 'AD01', 'Anthony Delano
 ('/img/kentaro-toma-nQKiOOb8jPo-unsplash.jpg', 'KT02', 'Kentaro Toma', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@thirdcultureken', 'https://www.instagram.com/thirdcultureken/', 'kentaro-toma'),
 ('/img/kentaro-toma-qc9aXVIAwIw-unsplash.jpg', 'KT03', 'Kentaro Toma', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@thirdcultureken', 'https://www.instagram.com/thirdcultureken/', 'kentaro-toma'),
 ('/img/kentaro-toma-yuga6aF4TrE-unsplash.jpg', 'KT04', 'Kentaro Toma', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@thirdcultureken', 'https://www.instagram.com/thirdcultureken/', 'kentaro-toma');
+
+
+create table users (
+  id integer primary key not null auto_increment,
+  email varchar(255) not null,
+  password varchar(255) not null
+);
+
+insert into users (email, password)
+values ('tawata.daniel@gmail.com', 'penguin');
