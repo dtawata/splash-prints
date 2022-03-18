@@ -1,25 +1,28 @@
 import styles from '../styles/Login.module.css';
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { signIn, getSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 const Login = (props) => {
   const email = useRef();
   const password = useRef();
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isLogin) {
-      try {
-        const loginInfo = {
-          email: email.current.value,
-          password: password.current.value
-        }
-        const res = await axios.get('http://localhost:3000/api/login');
-        console.log(res.data);
-      }
-      catch(err) {
-        console.log(err);
+      const emailInput = email.current.value;
+      const passwordInput = password.current.value;
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: emailInput,
+        password: passwordInput
+      });
+      console.log(result);
+      if (!result.error) {
+        router.replace('/');
       }
     } else {
       try {
@@ -64,3 +67,21 @@ const Login = (props) => {
 };
 
 export default Login;
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: {
+      session: session
+    }
+  }
+}
