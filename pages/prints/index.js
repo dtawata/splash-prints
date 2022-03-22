@@ -10,8 +10,6 @@ const Prints = (props) => {
   const { cart, setCart, collection } = props;
   const [selected, setSelected] = useState(props.selected);
 
-  console.log(collection);
-
   return (
     <div className={styles.prints}>
       <Thumbnails collection={collection} setSelected={setSelected} />

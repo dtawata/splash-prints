@@ -20,6 +20,21 @@ create table prints (
   index (path)
 );
 
+create table cart (
+  id integer primary key not null auto_increment,
+  email varchar(255) not null,
+  print_id integer not null,
+  obj_key varchar(255),
+  price integer,
+  qty integer,
+  size varchar(255)
+);
+
+-- insert into cart(email, print_id) values('tawata.daniel@gmail.com', 1);
+-- insert into cart(email, print_id, obj_key, price, qty, size) values('penguin@gmail.com', 1, '1_medium', 44, 1, 'medium');
+-- insert into cart(email, print_id, obj_key, price, qty, size) values('penguin@gmail.com', 2, '2_medium', 67, 1, 'medium');
+
+
 insert into prints(src, title, artist, alt, description, price_medium, price_large, sale_medium, sale_large, unsplash, instagram, path)
 values('/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg', 'AD01', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati pariatur aliquam quam ab vel ducimus id quia, facere corporis reiciendis consequatur. Atque!', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
 ('/img/anthony-delanoix-o0pifdpvJ_o-unsplash.jpg', 'AD02', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nostrum iusto culpa voluptatem, sint vitae nam quasi pariatur? Qui ratione officia atque libero perspiciatis!', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),

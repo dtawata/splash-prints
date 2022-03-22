@@ -6,8 +6,8 @@ import { useSession, signOut } from 'next-auth/client';
 
 const Header = (props) => {
   const { cart } = props;
-  const qty = Object.keys(cart).reduce((accumulator, current) => {
-    return accumulator + cart[current].qty;
+  const qty = Object.keys(cart).reduce((accumulator, item) => {
+    return accumulator + cart[item].qty;
   }, 0);
   const [session, loading] = useSession();
 

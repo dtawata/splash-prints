@@ -5,24 +5,35 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUnsplash, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import axios from 'axios';
 
 const Details = (props) => {
   const { cart, setCart, selected, setSelected, collection, recent } = props;
   const [size, setSize] = useState('medium');
 
-  const updateCart = () => {
+  const updateCart = async () => {
     const update = Object.assign({}, cart);
-    const key = `${selected.id}_${size}`;
-    if (update[key]) {
-      update[key]['qty']++;
-      if (update[key]['qty'] > 10) {
-        update[key]['qty'] = 10;
+    const obj_key = `${selected.id}_${size}`;
+    if (update[obj_key]) {
+      const item = update[obj_key];
+      item.qty++;
+      if (item.qty > 10) {
+        item.qty = 10;
       }
+      const body = { id: item.id, qty: item.qty }
+      const res = await axios.put('http://localhost:3000/api/cart/update', body);
     } else {
-      update[key] = Object.assign({}, selected);
-      update[key]['qty'] = 1;
-      update[key]['price'] = update[key][`price_${size}`];
-      update[key]['size'] = size;
+      update[obj_key] = Object.assign({}, selected);
+      const item = update[obj_key];
+      item.print_id = selected.id;
+      item.qty = 1;
+      item.price = item[`price_${size}`];
+      item.size = size;
+      item.obj_key = obj_key;
+      const res = await axios.post('http://localhost:3000/api/cart/add', item);
+      if (res.data) {
+        item.id = res.data.insertId;
+      }
     }
     recent.current = true;
     setCart(update);
@@ -37,7 +48,7 @@ const Details = (props) => {
   }
 
   useEffect(() => {
-    console.log(cart);
+    console.log('cart', cart);
   }, [cart]);
 
   let sizeM, sizeL;

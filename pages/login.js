@@ -45,10 +45,6 @@ const Login = (props) => {
     })
   }
 
-  useEffect(() => {
-    console.log('!!!', isLogin);
-  }, [isLogin])
-
   return (
     <div className={styles.login}>
       <div className={styles.loginContainer}>

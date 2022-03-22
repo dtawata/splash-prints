@@ -3,14 +3,13 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const Content = (props) => {
   const { cart, setCart } = props;
   const cartArr = Object.keys(cart).map((item) => {
-    cart[item]['key'] = item;
     return cart[item];
   });
-
 
   const changeQty = (e, key) => {
     const qty = Number(e.target.value);
@@ -26,7 +25,8 @@ const Content = (props) => {
     const newKey = `${id}_${newSize}`;
     const update = Object.assign({}, cart);
     if (update[newKey]) {
-      update[newKey]['qty'] = update[newKey]['qty'] + qty;
+      let item = update[newKey];
+      item.qty = item.qty + qty;
       delete update[key];
     } else {
       update[newKey] = update[key];
@@ -38,9 +38,14 @@ const Content = (props) => {
     setCart(update);
   };
 
-  const removeItem = (key) => {
+  const removeItem = async (item) => {
+    console.log('key', item);
+    console.log('yayyyy')
+    const body = { id: item.id };
+    const res = await axios.post('http://localhost:3000/api/cart/delete', body);
+    console.log(res.data);
     const update = Object.assign({}, cart);
-    delete update[key];
+    delete update[item.obj_key];
     setCart(update);
   };
 
@@ -49,7 +54,7 @@ const Content = (props) => {
       <div className={styles.cartTitle}>Your Cart</div>
       <div className={styles.items}>
         {cartArr.map((item, index) => {
-          return <Item key={item.key} item={item} changeSize={changeSize} changeQty={changeQty} removeItem={removeItem} />
+          return <Item key={item.obj_key} item={item} changeSize={changeSize} changeQty={changeQty} removeItem={removeItem} />
         })}
       </div>
     </div>
@@ -90,7 +95,7 @@ const Item = (props) => {
           </div>
         </div>
       </div>
-      <div onClick={() => { removeItem(item.key); }} className={styles.remove}>
+      <div onClick={() => { removeItem(item); }} className={styles.remove}>
         <FontAwesomeIcon icon={faX} className={styles.icon} />
       </div>
     </div>
