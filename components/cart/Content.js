@@ -1,59 +1,91 @@
 import styles from '../../styles/cart/Content.module.css';
-import { Fragment } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+
 
 const Content = (props) => {
-  const { cart, setCart } = props;
+  const { isLoggedIn, cart } = props;
+  const router = useRouter();
   const cartArr = Object.keys(cart).map((item) => {
     return cart[item];
   });
 
-  const changeQty = (e, key) => {
+  const changeQty = async (e, item) => {
+    const { id, obj_key } = item;
     const qty = Number(e.target.value);
-    const update = Object.assign({}, cart);
-    update[key]['qty'] = qty;
-    setCart(update);
+    if (isLoggedIn) {
+      const body = { id: id, qty: qty }
+      const res = await axios.put('http://localhost:3000/api/cart/update', body);
+    } else {
+      const update = Object.assign({}, cart);
+      update[obj_key]['qty'] = qty;
+      localStorage.setItem('cart', JSON.stringify(update));
+    }
+    router.replace(router.asPath);
   };
 
-  const changeSize = (e, key) => {
-    const id = cart[key]['id'];
-    const qty = cart[key]['qty'];
+  const changeSize = async (e, item) => {
+    const { id, obj_key, qty, print_id } = item;
     const newSize = e.target.value;
-    const newKey = `${id}_${newSize}`;
-    const update = Object.assign({}, cart);
-    if (update[newKey]) {
-      let item = update[newKey];
-      item.qty = item.qty + qty;
-      delete update[key];
+    const newKey = `${print_id}_${newSize}`;
+    if (isLoggedIn) {
+      if (cart[newKey]) {
+        const newQty = qty + cart[newKey].qty;
+        const newId = cart[newKey].id;
+        const body = { id: newId, qty: newQty };
+        const res = await axios.put('http://localhost:3000/api/cart/update', body);
+      } else {
+        const newItem = {};
+        newItem.print_id = print_id;
+        newItem.qty = qty;
+        newItem.size = newSize;
+        newItem.obj_key = newKey;
+        newItem.price = item[`price_${newSize}`];
+        const res = await axios.post('http://localhost:3000/api/cart/add', newItem);
+      }
+      const body = { id: id };
+      const res = await axios.post('http://localhost:3000/api/cart/delete', body);
     } else {
-      update[newKey] = update[key];
-      update[newKey]['key'] = `${id}_${newSize}`;
-      update[newKey]['price'] = update[newKey][`price_${newSize}`];
-      update[newKey]['size'] = newSize;
-      delete update[key];
+      const newSize = e.target.value;
+      const newKey = `${print_id}_${newSize}`;
+      const update = Object.assign({}, cart);
+      if (update[newKey]) {
+        let item = update[newKey];
+        item.qty = item.qty + qty;
+        delete update[obj_key];
+      } else {
+        update[newKey] = update[obj_key];
+        update[newKey]['obj_key'] = `${print_id}_${newSize}`;
+        update[newKey]['price'] = update[newKey][`price_${newSize}`];
+        update[newKey]['size'] = newSize;
+      }
+      delete update[obj_key];
+      localStorage.setItem('cart', JSON.stringify(update));
     }
-    setCart(update);
+    router.replace(router.asPath);
   };
 
   const removeItem = async (item) => {
-    console.log('key', item);
-    console.log('yayyyy')
-    const body = { id: item.id };
-    const res = await axios.post('http://localhost:3000/api/cart/delete', body);
-    console.log(res.data);
-    const update = Object.assign({}, cart);
-    delete update[item.obj_key];
-    setCart(update);
+    const { id, obj_key } = item;
+    if (isLoggedIn) {
+      const body = { id: id };
+      const res = await axios.post('http://localhost:3000/api/cart/delete', body);
+    } else {
+      const update = Object.assign({}, cart);
+      delete update[obj_key];
+      localStorage.setItem('cart', JSON.stringify(update));
+    }
+    router.replace(router.asPath);
   };
 
   return (
     <div className={styles.content}>
       <div className={styles.cartTitle}>Your Cart</div>
       <div className={styles.items}>
-        {cartArr.map((item, index) => {
+        {cartArr.map((item) => {
           return <Item key={item.obj_key} item={item} changeSize={changeSize} changeQty={changeQty} removeItem={removeItem} />
         })}
       </div>
@@ -67,15 +99,15 @@ const Item = (props) => {
   return (
     <div className={styles.item}>
       <div className={styles.print}>
-        <Image src={props.item.src} alt={'hello'} width={200} height={240} />
+        <Image src={item.src} alt={item.alt} width={200} height={240} />
       </div>
       <div className={styles.printDetails}>
-        <div className={styles.printName}>{props.item.title}</div>
+        <div className={styles.printName}>{item.title}</div>
         <div className={styles.flex}>
           <div className={styles.selectors}>
             <div className={styles.qty}>
               <div className={styles.qtyTitle}>Quantity:</div>
-              <select onChange={(e) => { changeQty(e, item.key); }} value={item.qty}>
+              <select onChange={(e) => { changeQty(e, item); }} value={item.qty}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((val, index) => {
                   return <QtyOptions key={index} val={val} />
                 })}
@@ -83,7 +115,7 @@ const Item = (props) => {
             </div>
             <div className={styles.size}>
               <div className={styles.sizeTitle}>Size:</div>
-              <select onChange={(e) => { changeSize(e, item.key); }} value={item.size}>
+              <select onChange={(e) => { changeSize(e, item); }} value={item.size}>
                 <option value="medium">M</option>
                 <option value="large">L</option>
               </select>
@@ -103,8 +135,10 @@ const Item = (props) => {
 };
 
 const QtyOptions = (props) => {
+  const { val } = props;
+
   return (
-    <option value={props.val}>{props.val}</option>
+    <option value={val}>{val}</option>
   );
 }
 

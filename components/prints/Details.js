@@ -1,42 +1,66 @@
 import styles from '../../styles/prints/Details.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUnsplash, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const Details = (props) => {
-  const { cart, setCart, selected, setSelected, collection, recent } = props;
+  const { isLoggedIn, cart, selected, setSelected, collection, recent } = props;
   const [size, setSize] = useState('medium');
+  const router = useRouter();
 
   const updateCart = async () => {
-    const update = Object.assign({}, cart);
-    const obj_key = `${selected.id}_${size}`;
-    if (update[obj_key]) {
-      const item = update[obj_key];
-      item.qty++;
-      if (item.qty > 10) {
-        item.qty = 10;
+    if (isLoggedIn) {
+      const update = Object.assign({}, cart);
+      const obj_key = `${selected.id}_${size}`;
+      if (update[obj_key]) {
+        const item = update[obj_key];
+        item.qty++;
+        if (item.qty > 10) {
+          item.qty = 10;
+        }
+        const body = { id: item.id, qty: item.qty }
+        const res = await axios.put('http://localhost:3000/api/cart/update', body);
+      } else {
+        update[obj_key] = Object.assign({}, selected);
+        const item = update[obj_key];
+        item.print_id = selected.id;
+        item.qty = 1;
+        item.price = item[`price_${size}`];
+        item.size = size;
+        item.obj_key = obj_key;
+        const res = await axios.post('http://localhost:3000/api/cart/add', item);
+        if (res.data) {
+          item.id = res.data.insertId;
+        }
       }
-      const body = { id: item.id, qty: item.qty }
-      const res = await axios.put('http://localhost:3000/api/cart/update', body);
+      recent.current = true;
+      router.replace(router.asPath);
     } else {
-      update[obj_key] = Object.assign({}, selected);
-      const item = update[obj_key];
-      item.print_id = selected.id;
-      item.qty = 1;
-      item.price = item[`price_${size}`];
-      item.size = size;
-      item.obj_key = obj_key;
-      const res = await axios.post('http://localhost:3000/api/cart/add', item);
-      if (res.data) {
-        item.id = res.data.insertId;
+      const update = Object.assign({}, cart);
+      const obj_key = `${selected.id}_${size}`;
+      if (update[obj_key]) {
+        const item = update[obj_key];
+        item.qty++;
+        if (item.qty > 10) {
+          item.qty = 10;
+        }
+      } else {
+        update[obj_key] = Object.assign({}, selected);
+        const item = update[obj_key];
+        item.print_id = selected.id;
+        item.qty = 1;
+        item.price = item[`price_${size}`];
+        item.size = size;
+        item.obj_key = obj_key;
       }
+      localStorage.setItem('cart', JSON.stringify(update));
+      recent.current = true;
+      router.replace(router.asPath);
     }
-    recent.current = true;
-    setCart(update);
   }
 
   const changeSize = (clickedSize) => {
@@ -46,10 +70,6 @@ const Details = (props) => {
       setSize(clickedSize);
     }
   }
-
-  useEffect(() => {
-    console.log('cart', cart);
-  }, [cart]);
 
   let sizeM, sizeL;
   if (size === 'medium') {

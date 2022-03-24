@@ -4,9 +4,11 @@ import { getPrints, getCart } from '../lib/db.js';
 import { getSession } from 'next-auth/client';
 
 const Home = (props) => {
+  const { prints } = props;
+
   return (
     <div className={styles.home}>
-      <Gallery prints={props.prints} />
+      <Gallery prints={prints} />
     </div>
   );
 };
@@ -20,7 +22,9 @@ export const getServerSideProps = async (context) => {
   if (!session) {
     return {
       props: {
+        isLoggedIn: false,
         prints: prints,
+        cart: {}
       }
     }
   }
@@ -33,8 +37,9 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
+      isLoggedIn: true,
       prints: prints,
-      initializeCart: cart
+      cart: cart
     }
   }
 }

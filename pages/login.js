@@ -20,7 +20,6 @@ const Login = (props) => {
         email: emailInput,
         password: passwordInput
       });
-      console.log(result);
       if (!result.error) {
         router.replace('/');
       }
@@ -31,7 +30,17 @@ const Login = (props) => {
           password: password.current.value
         }
         const res = await axios.post('http://localhost:3000/api/signup', signupInfo);
-        console.log(res.data);
+        console.log(res);
+        if (res.status === 201) {
+          const result = await signIn('credentials', {
+            redirect: false,
+            email: signupInfo.email,
+            password: signupInfo.password
+          });
+          if (!result.error) {
+            router.replace('/');
+          }
+        }
       }
       catch(err) {
         console.log(err);
@@ -77,7 +86,8 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      session: session
+      session: session,
+      cart: {}
     }
   }
 }

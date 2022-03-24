@@ -7,17 +7,16 @@ import { getSession } from 'next-auth/client';
 import { getCart } from '../../lib/db.js';
 
 const Cart = (props) => {
-  const {cart, setCart} = props;
+  const { isLoggedIn, cart } = props;
 
   return (
     <div className={styles.cart}>
       {Object.keys(cart).length > 0 ?
         <Fragment>
-          <Content cart={cart} setCart={setCart} />
+          <Content cart={cart} isLoggedIn={isLoggedIn} />
           <Checkout cart={cart} />
         </Fragment> :
-        <Empty />
-      }
+        <Empty />}
     </div>
   );
 };
@@ -27,6 +26,14 @@ export default Cart;
 export const getServerSideProps = async (context) => {
 
   const session = await getSession({ req: context.req });
+  if (!session) {
+    return {
+      props: {
+        isLoggedIn: false,
+        cart: {}
+      }
+    }
+  }
   const email = session.user.email;
   const initialize = await getCart(email);
   const cart = initialize.reduce((accumulator, item) => {
@@ -34,22 +41,10 @@ export const getServerSideProps = async (context) => {
     return accumulator;
   }, {});
 
-
-  // const session = await getSession({ req: context.req });
-  // const email = session.user.email;
-  // // console.log('session', email);
-  // const cart = await getCart(email);
-  // console.log('first', cart);
-  // const ids = cart.map((item) => {
-  //   return item.print_id;
-  // });
-  // console.log('ids', ids);
-  // const cartContent = await getCartContent(ids);
-  // console.log('cart', cartContent);
-
   return {
     props: {
-      initializeCart: cart
+      isLoggedIn: true,
+      cart: cart
     }
   }
 }

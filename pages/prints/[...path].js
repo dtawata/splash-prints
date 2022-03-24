@@ -8,7 +8,7 @@ import { getCart, getCollection } from '../../lib/db.js';
 import { getSession } from 'next-auth/client';
 
 const Prints = (props) => {
-  const { cart, setCart, collection } = props;
+  const { cart, collection, localCart, setLocalCart, isLoggedIn } = props;
   const [selected, setSelected] = useState(props.selected);
   const recent = useRef(false);
 
@@ -18,7 +18,7 @@ const Prints = (props) => {
         <Fragment>
           <Thumbnails collection={collection} setSelected={setSelected} />
           <Gallery selected={selected} />
-          <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} setCart={setCart} recent={recent} />
+          <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} localCart={localCart} setLocalCart={setLocalCart} isLoggedIn={isLoggedIn} recent={recent} />
         </Fragment>}
     </div>
   );
@@ -45,7 +45,9 @@ export const getServerSideProps = async (context) => {
     return {
       props: {
         collection: collection,
-        selected: selected
+        selected: selected,
+        cart: {},
+        isLoggedIn: false
       }
     }
   }
@@ -61,7 +63,8 @@ export const getServerSideProps = async (context) => {
     props: {
       collection: collection,
       selected: selected,
-      initializeCart: cart
+      cart: cart,
+      isLoggedIn: true
     }
   }
 }

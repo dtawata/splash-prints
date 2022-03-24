@@ -2,19 +2,18 @@ import styles from '../styles/Header.module.css';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { useSession, signOut } from 'next-auth/client';
+import { signOut } from 'next-auth/client';
 
 const Header = (props) => {
-  const { cart } = props;
+  const { isLoggedIn, cart } = props;
   const qty = Object.keys(cart).reduce((accumulator, item) => {
     return accumulator + cart[item].qty;
   }, 0);
-  const [session, loading] = useSession();
 
   return (
     <header className={styles.header}>
       <Link href="/" passHref>
-        <div className={styles.logo}>Penguin Prints</div>
+        <div className={styles.logo}>Splash Prints</div>
       </Link>
       <nav>
         <ul>
@@ -37,7 +36,7 @@ const Header = (props) => {
             <div>Cart</div>
           </div>
         </Link>
-        {session ? <div onClick={signOut} className={styles.login}>Logout</div> :
+        {isLoggedIn ? <div onClick={signOut} className={styles.login}>Logout</div> :
           <Link href="/login" passHref>
             <div className={styles.login}>Login</div>
           </Link>}

@@ -6,10 +6,10 @@ const handler = async (req, res) => {
   if (!session) {
     return;
   }
-  const { id, obj_key, price, qty, size } = req.body;
+  const { print_id, obj_key, price, qty, size } = req.body;
   const email = session.user.email;
   const queryString = 'insert into cart(email, print_id, obj_key, price, qty, size) values(?, ?, ?, ?, ?, ?)';
-  const queryArgs = [email, id, obj_key, price, qty, size];
+  const queryArgs = [email, print_id, obj_key, price, qty, size];
   const data = await connection.promise().query(queryString, queryArgs);
   res.status(201).send(data[0]);
 }
