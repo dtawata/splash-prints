@@ -1,5 +1,5 @@
 import styles from '../../styles/Prints.module.css';
-import { useState, useRef, Fragment } from 'react';
+import { useState, useRef, Fragment, useEffect } from 'react';
 import Added from '../../components/prints/Added';
 import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
@@ -8,9 +8,13 @@ import { getCart, getCollection } from '../../lib/db.js';
 import { getSession } from 'next-auth/client';
 
 const Prints = (props) => {
-  const { cart, collection, localCart, setLocalCart, isLoggedIn } = props;
+  const { isLoggedIn, cart, collection } = props;
   const [selected, setSelected] = useState(props.selected);
   const recent = useRef(false);
+
+  useEffect(() => {
+    setSelected(props.selected);
+  }, [props.selected])
 
   return (
     <div className={styles.prints}>
@@ -18,7 +22,7 @@ const Prints = (props) => {
         <Fragment>
           <Thumbnails collection={collection} setSelected={setSelected} />
           <Gallery selected={selected} />
-          <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} localCart={localCart} setLocalCart={setLocalCart} isLoggedIn={isLoggedIn} recent={recent} />
+          <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} isLoggedIn={isLoggedIn} recent={recent} />
         </Fragment>}
     </div>
   );
@@ -27,6 +31,7 @@ const Prints = (props) => {
 export default Prints;
 
 export const getServerSideProps = async (context) => {
+  console.log('server')
   const path = context.params.path;
   const fetchSession = getSession({ req: context.req });
   const fetchCollection = getCollection(path[0]);

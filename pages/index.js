@@ -4,6 +4,7 @@ import { getPrints, getCart } from '../lib/db.js';
 import { getSession } from 'next-auth/client';
 
 const Home = (props) => {
+  console.log('cart', props.cart);
   const { prints } = props;
 
   return (

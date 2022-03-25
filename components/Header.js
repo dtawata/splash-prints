@@ -20,7 +20,9 @@ const Header = (props) => {
           <Link href="/" passHref>
             <li>Home</li>
           </Link>
-          <li>Featured</li>
+          <Link href="/prints/anthony-delanoix" passHref>
+            <li>Featured</li>
+          </Link>
           <li>Favorites</li>
           <li>Fourth</li>
           <li>Fifth</li>
