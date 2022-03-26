@@ -1,5 +1,21 @@
 
 .prints {
-  display: flex;
   padding: 40px 0;
+}
+
+.description {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: beige;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.description p {
+  margin-top: 5px;
+}
+
+.flex {
+  display: flex;
 }

@@ -7,7 +7,7 @@ const Thanks = (props) => {
   return (
     <div className={styles.thanks}>
       <h1>Thank you for demoing my application!</h1>
-      <div className={styles.connect}>Connect with me on <a href='https://www.linkedin.com/in/daniel-tawata/'>LinkedIn: Daniel Tawata</a></div>
+      <div className={styles.connect}>Connect with me on <a href='https://www.linkedin.com/in/daniel-tawata/' target='_blank' rel='noreferrer'>LinkedIn: Daniel Tawata</a></div>
       <div className={styles.flex}>
         <div className={styles.section}>
           <div className={styles.title}>Tech Stack:</div>

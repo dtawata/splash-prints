@@ -4,6 +4,7 @@ import Added from '../../components/prints/Added';
 import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
+import Related from '../../components/prints/Related';
 import { getCollection, getCart, getFavorites } from '../../lib/db.js';
 import { getSession } from 'next-auth/client';
 
@@ -18,12 +19,19 @@ const Prints = (props) => {
 
   return (
     <div className={styles.prints}>
-      {recent.current ? <Added /> :
-        <Fragment>
-          <Thumbnails collection={collection} setSelected={setSelected} />
-          <Gallery selected={selected} />
-          <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} isLoggedIn={isLoggedIn} recent={recent} favorites={favorites} />
-        </Fragment>}
+      <div className={styles.flex}>
+        {recent.current ? <Added /> :
+          <Fragment>
+            <Thumbnails collection={collection} setSelected={setSelected} />
+            <Gallery selected={selected} />
+            <Details collection={collection} selected={selected} setSelected={setSelected} cart={cart} isLoggedIn={isLoggedIn} recent={recent} favorites={favorites} />
+          </Fragment>}
+      </div>
+      {!recent.current && <div className={styles.description}>
+        <h3>About {selected.artist}</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, libero ipsam? Neque possimus itaque id blanditiis quibusdam suscipit quaerat rem, cum magnam aliquam cumque culpa animi saepe tempore est, nobis maxime expedita nulla iure, impedit modi maiores aliquid aut. Eveniet?</p>
+      </div>}
+      <Related related={collection} />
     </div>
   );
 };
