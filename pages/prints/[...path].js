@@ -49,10 +49,10 @@ export const getServerSideProps = async (context) => {
   if (!session) {
     return {
       props: {
+        isLoggedIn: false,
         collection: collection,
         selected: selected,
-        cart: {},
-        isLoggedIn: false
+        initial: {}
       }
     }
   }
@@ -66,10 +66,10 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
+      isLoggedIn: true,
       collection: collection,
       selected: selected,
-      cart: cart,
-      isLoggedIn: true
+      initial: cart
     }
   }
 }

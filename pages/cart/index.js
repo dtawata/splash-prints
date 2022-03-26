@@ -30,7 +30,7 @@ export const getServerSideProps = async (context) => {
     return {
       props: {
         isLoggedIn: false,
-        cart: {}
+        initial: {}
       }
     }
   }
@@ -44,7 +44,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       isLoggedIn: true,
-      cart: cart
+      initial: cart
     }
   }
 }
