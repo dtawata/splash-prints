@@ -92,16 +92,6 @@ const Details = (props) => {
     }
     const index = router.asPath.lastIndexOf('/');
     router.replace(router.asPath.slice(0, index + 1) + selected.id);
-
-
-//     | id       | int          | NO   | PRI | NULL    | auto_increment |
-// | email    | varchar(255) | NO   |     | NULL    |                |
-// | print_id | int          | NO   |     | NULL    |                |
-// | obj_key  | varchar(255) | YES  |     | NULL    |                |
-// | price    | int          | YES  |     | NULL    |                |
-// | qty      | int          | YES  |     | NULL    |                |
-// | size     | varchar(255) | YES  |     | NULL    |
-
   }
 
   let sizeM, sizeL;

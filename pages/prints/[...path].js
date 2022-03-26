@@ -4,7 +4,7 @@ import Added from '../../components/prints/Added';
 import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
-import { getCart, getCollection, getFavorites } from '../../lib/db.js';
+import { getCollection, getCart, getFavorites } from '../../lib/db.js';
 import { getSession } from 'next-auth/client';
 
 const Prints = (props) => {
@@ -35,7 +35,6 @@ export const getServerSideProps = async (context) => {
   const fetchSession = getSession({ req: context.req });
   const fetchCollection = getCollection(path[0]);
   const [session, collection] = await Promise.all([fetchSession, fetchCollection]);
-
   let id = 0;
   for (let i = 0; i < collection.length; i++) {
     if (collection[i].id.toString() === path[1]) {

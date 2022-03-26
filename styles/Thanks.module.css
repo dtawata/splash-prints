@@ -1,0 +1,58 @@
+
+.thanks {
+  padding: 40px 0;
+}
+
+.thanks h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.section {
+  display: inline-block;
+  width: 400px;
+  margin-top: 30px;
+  padding: 25px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.section + .section {
+  margin-left: 40px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.thanks ul {
+  list-style: none;
+}
+
+.thanks li {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.connect {
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.connect a {
+  color: #1285ED;
+}

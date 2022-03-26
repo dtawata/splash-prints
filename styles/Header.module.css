@@ -77,3 +77,16 @@
   list-style: none;
   text-transform: uppercase;
 }
+
+.soon {
+  position: relative;
+}
+
+.comingsoon {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 100px;
+  color: red;
+  font-size: 12px;
+}

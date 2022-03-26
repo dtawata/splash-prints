@@ -1,5 +1,6 @@
 import styles from '../../styles/cart/Checkout.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Checkout = (props) => {
   const { cart } = props;
@@ -36,7 +37,9 @@ const Checkout = (props) => {
           <div className={styles.totalLabel}>Order total:</div>
           <div className={styles.totalValue}>${total}</div>
         </div>
-        <button className={styles.button}>Checkout</button>
+        <Link href="/thanks" passHref>
+          <button className={styles.button}>Checkout</button>
+        </Link>
         <div className={styles.payment}>
           <Image src="/img/payments.png" alt={'payment badges'} width={200} height={40} layout={'responsive'} />
         </div>

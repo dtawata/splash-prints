@@ -23,11 +23,8 @@ const Header = (props) => {
           <Link href="/prints/anthony-delanoix" passHref>
             <li>Featured</li>
           </Link>
-          <li>Favorites</li>
-          <Link href="/" passHref>
-            <li>About</li>
-          </Link>
-          <li>Fifth</li>
+          <li className={styles.soon}>Favorites <div className={styles.comingsoon}>Coming Soon!</div></li>
+          <li className={styles.soon}>About <div className={styles.comingsoon}>Coming Soon!</div></li>
         </ul>
       </nav>
       <div className={styles.right}>
