@@ -24,7 +24,9 @@ const Header = (props) => {
             <li>Featured</li>
           </Link>
           <li>Favorites</li>
-          <li>Fourth</li>
+          <Link href="/" passHref>
+            <li>About</li>
+          </Link>
           <li>Fifth</li>
         </ul>
       </nav>

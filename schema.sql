@@ -30,6 +30,17 @@ create table cart (
   size varchar(255)
 );
 
+create table favorites (
+  id integer primary key not null auto_increment,
+  email varchar(255) not null,
+  print_id integer not null,
+  price integer,
+  size varchar(255)
+);
+
+insert into favorites (email, print_id, price, size)
+values ('penguin@gmail.com', 1, 44, 'medium');
+
 -- insert into cart(email, print_id) values('tawata.daniel@gmail.com', 1);
 -- insert into cart(email, print_id, obj_key, price, qty, size) values('penguin@gmail.com', 1, '1_medium', 44, 1, 'medium');
 -- insert into cart(email, print_id, obj_key, price, qty, size) values('penguin@gmail.com', 2, '2_medium', 67, 1, 'medium');
