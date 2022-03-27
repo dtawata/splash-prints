@@ -5,17 +5,23 @@ import Thumbnails from '../../components/prints/Thumbnails';
 import Gallery from '../../components/prints/Gallery';
 import Details from '../../components/prints/Details';
 import Related from '../../components/prints/Related';
-import { getCollection, getCart, getFavorites } from '../../lib/db.js';
+import { getCollection, getCart, getFavorites, getRelated } from '../../lib/db.js';
 import { getSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 const Prints = (props) => {
-  const { isLoggedIn, cart, collection, favorites } = props;
+  const { isLoggedIn, cart, collection, favorites, related } = props;
   const [selected, setSelected] = useState(props.selected);
   const recent = useRef(false);
+  const router = useRouter();
 
   useEffect(() => {
     setSelected(props.selected);
   }, [props.selected])
+
+  useEffect(() => {
+    recent.current = false;
+  }, [router.asPath])
 
   return (
     <div className={styles.prints}>
@@ -31,7 +37,7 @@ const Prints = (props) => {
         <h3>About {selected.artist}</h3>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, libero ipsam? Neque possimus itaque id blanditiis quibusdam suscipit quaerat rem, cum magnam aliquam cumque culpa animi saepe tempore est, nobis maxime expedita nulla iure, impedit modi maiores aliquid aut. Eveniet?</p>
       </div>}
-      <Related related={collection} />
+      <Related related={related} />
     </div>
   );
 };
@@ -42,7 +48,9 @@ export const getServerSideProps = async (context) => {
   const path = context.params.path;
   const fetchSession = getSession({ req: context.req });
   const fetchCollection = getCollection(path[0]);
-  const [session, collection] = await Promise.all([fetchSession, fetchCollection]);
+  const fetchRelated = getRelated(path[0]);
+  const [session, collection, related] = await Promise.all([fetchSession, fetchCollection, fetchRelated]);
+  console.log('col', collection);
   let id = 0;
   for (let i = 0; i < collection.length; i++) {
     if (collection[i].id.toString() === path[1]) {
@@ -59,7 +67,8 @@ export const getServerSideProps = async (context) => {
         collection: collection,
         selected: selected,
         initial: {},
-        favorites: {}
+        favorites: {},
+        related: related
       }
     }
   }

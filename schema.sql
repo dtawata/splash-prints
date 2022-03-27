@@ -1,7 +1,12 @@
-
 drop database if exists ecom;
 create database if not exists ecom;
 use ecom
+
+create table users (
+  id integer primary key not null auto_increment,
+  email varchar(255) not null,
+  password varchar(255) not null
+);
 
 create table prints (
   id integer primary key not null auto_increment,
@@ -38,13 +43,29 @@ create table favorites (
   size varchar(255)
 );
 
-insert into favorites (email, print_id, price, size)
-values ('penguin@gmail.com', 1, 44, 'medium');
+create table related (
+  id integer primary key not null auto_increment,
+  path varchar(255) not null,
+  print_id integer not null
+);
 
--- insert into cart(email, print_id) values('tawata.daniel@gmail.com', 1);
--- insert into cart(email, print_id, obj_key, price, qty, size) values('penguin@gmail.com', 1, '1_medium', 44, 1, 'medium');
--- insert into cart(email, print_id, obj_key, price, qty, size) values('penguin@gmail.com', 2, '2_medium', 67, 1, 'medium');
-
+insert into related (path, print_id)
+values ('anthony-delanoix', 5),
+('anthony-delanoix', 6),
+('anthony-delanoix', 7),
+('anthony-delanoix', 8),
+('jonny-gios', 9),
+('jonny-gios', 10),
+('jonny-gios', 11),
+('jonny-gios', 12),
+('adam-borkowski', 13),
+('adam-borkowski', 14),
+('adam-borkowski', 15),
+('adam-borkowski', 16),
+('kentaro-toma', 1),
+('kentaro-toma', 2),
+('kentaro-toma', 3),
+('kentaro-toma', 4);
 
 insert into prints(src, title, artist, alt, description, price_medium, price_large, sale_medium, sale_large, unsplash, instagram, path)
 values('/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg', 'AD01', 'Anthony Delanoix', 'Placeholder', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati pariatur aliquam quam ab vel ducimus id quia, facere corporis reiciendis consequatur. Atque!', 44, 67, null, null, 'https://unsplash.com/@anthonydelanoix', 'https://www.instagram.com/antho.dlx/', 'anthony-delanoix'),
@@ -66,13 +87,3 @@ values('/img/anthony-delanoix-C16xHin1f7A-unsplash.jpg', 'AD01', 'Anthony Delano
 ('/img/kentaro-toma-nQKiOOb8jPo-unsplash.jpg', 'KT02', 'Kentaro Toma', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@thirdcultureken', 'https://www.instagram.com/thirdcultureken/', 'kentaro-toma'),
 ('/img/kentaro-toma-qc9aXVIAwIw-unsplash.jpg', 'KT03', 'Kentaro Toma', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@thirdcultureken', 'https://www.instagram.com/thirdcultureken/', 'kentaro-toma'),
 ('/img/kentaro-toma-yuga6aF4TrE-unsplash.jpg', 'KT04', 'Kentaro Toma', 'Placeholder', 'Placeholder', 44, 67, null, null, 'https://unsplash.com/@thirdcultureken', 'https://www.instagram.com/thirdcultureken/', 'kentaro-toma');
-
-
-create table users (
-  id integer primary key not null auto_increment,
-  email varchar(255) not null,
-  password varchar(255) not null
-);
-
-insert into users (email, password)
-values ('tawata.daniel@gmail.com', 'penguin');

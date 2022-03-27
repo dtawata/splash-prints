@@ -90,6 +90,8 @@ const Details = (props) => {
       }
       const res = await axios.post('http://localhost:3000/api/favorites/add', body);
     }
+    // router.replace(router.asPath);
+
     const index = router.asPath.lastIndexOf('/');
     router.replace(router.asPath.slice(0, index + 1) + selected.id);
   }

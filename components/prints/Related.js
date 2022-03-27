@@ -1,5 +1,6 @@
 import styles from '../../styles/prints/Related.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Related = (props) => {
   const { related } = props;
@@ -20,9 +21,11 @@ const Item = (props) => {
   const { item } = props;
 
   return (
-    <div className={styles.item}>
-      <Image src={item.src} alt={item.alt} width={450} height={500} />
-    </div>
+    <Link href={`/prints/${item.path}/${item.id}`} passHref>
+      <div className={styles.item}>
+        <Image src={item.src} alt={item.alt} width={243} height={289} />
+      </div>
+    </Link>
   );
 };
 
