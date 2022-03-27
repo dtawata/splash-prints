@@ -45,15 +45,15 @@ const Prints = (props) => {
 export default Prints;
 
 export const getServerSideProps = async (context) => {
-  const path = context.params.path;
+  const { path, print } = context.query;
   const fetchSession = getSession({ req: context.req });
-  const fetchCollection = getCollection(path[0]);
-  const fetchRelated = getRelated(path[0]);
+  const fetchCollection = getCollection(path);
+  const fetchRelated = getRelated(path);
   const [session, collection, related] = await Promise.all([fetchSession, fetchCollection, fetchRelated]);
-  console.log('col', collection);
+
   let id = 0;
   for (let i = 0; i < collection.length; i++) {
-    if (collection[i].id.toString() === path[1]) {
+    if (collection[i].id.toString() === print) {
       id = i;
       break;
     }

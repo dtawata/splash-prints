@@ -8,7 +8,7 @@ const Gallery = (props) => {
       <div className={styles.title}>Check Out Our Latest Prints!</div>
       <div className={styles.inner}>
         {props.prints.map((print, index) => {
-          return <Print key={index} print={print} />
+          return <Print key={print.id} print={print} />
         })}
       </div>
     </div>
@@ -17,7 +17,7 @@ const Gallery = (props) => {
 
 const Print = (props) => {
   return (
-    <Link href={`/prints/${props.print.path}/${props.print.id}`} passHref>
+    <Link href={`/prints/${props.print.path}?print=${props.print.id}`} passHref>
       <div className={styles.print}>
         <Image src={props.print.src} alt={props.print.alt} width={347} height={413} />
         {/* <Image src={props.print.src} alt={props.print.alt} width={550} height={650} /> */}
