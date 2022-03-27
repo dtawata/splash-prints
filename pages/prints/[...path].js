@@ -93,7 +93,8 @@ export const getServerSideProps = async (context) => {
       collection: collection,
       selected: selected,
       initial: cart,
-      favorites: favorites
+      favorites: favorites,
+      related: related
     }
   }
 }
